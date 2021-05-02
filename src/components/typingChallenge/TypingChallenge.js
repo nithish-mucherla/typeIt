@@ -1,21 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import TestLetter from "../TestLetter/TestLetter";
 import "./TypingChallenge.css";
 
-const TypingChallenge = () => {
+const TypingChallenge = ({ testPara, setWordCount, setCharCount }) => {
+  const [userText, setUserText] = useState(``);
+  const [testLetters, setTestLetters] = useState([]);
+
+  const generateTestLetters = () => {
+    const letters = [];
+    testPara
+      .split("")
+      .forEach((letter, i) => letters.push({ letter: letter, status: "" }));
+    setTestLetters([...letters]);
+  };
+
+  useEffect(generateTestLetters, [testPara]);
+
+  const updateTestLetter = (e) => {
+    const userText = e.target.value;
+    const len = userText.length;
+    let letters = testLetters;
+
+    letters.slice(len).forEach((letter) => (letter.status = ""));
+
+    [...userText].forEach((letter, i) => {
+      if (i < testLetters.length)
+        letters[i].status =
+          letters[i].letter === letter ? "correct" : "incorrect";
+    });
+
+    setTestLetters([...letters]);
+    setUserText(userText);
+    setWordCount(userText.length > 0 ? userText.trim().split(" ").length : 0);
+    setCharCount(userText.length);
+  };
   return (
     <div className="typing-challenge-contianer">
       <div className="test-para">
-        This could be, or perhaps a collar is the pamphlet of a kimberly. A dad
-        of the design is assumed to be a patent june. A teeny chief is a james
-        of the mind. A deborah can hardly be considered a saintly flesh without
-        also being a daffodil. Those ministers are nothing more than cathedrals.
-        Though we assume the latter, a market of the cracker is assumed to be an
-        okay confirmation. The literature would have us believe that a mirthless
-        t-shirt is not but a clock. The headlong carol comes from a puddly
-        whistle. The olives could be said to resemble upbound ethernets.
+        {testLetters.map((letter, i) => (
+          <TestLetter letter={letter.letter} status={letter.status} key={i} />
+        ))}
       </div>
       <div className="user-text-container">
-        <textarea className="user-text-area"></textarea>
+        <textarea
+          className="user-text-area"
+          onChange={(e) => updateTestLetter(e)}
+          value={userText}
+        ></textarea>
       </div>
     </div>
   );
