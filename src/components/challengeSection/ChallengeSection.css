@@ -1,0 +1,13 @@
+.challenge-section {
+  display: flex;
+  flex-direction: column;
+  margin: 90px 0;
+}
+
+.test-header {
+  color: #eeeeee;
+  font-family: "Press Start 2P";
+  font-size: 20px;
+  text-align: center;
+  padding: 20px 0;
+}
