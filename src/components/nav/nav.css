@@ -1,0 +1,11 @@
+.nav {
+  background-color: #2a2c3f;
+  color: white;
+  font-family: "Proza Libre";
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 1px 3px #2a2c3f69;
+}
