@@ -1,0 +1,7 @@
+.result-container {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  background-color: white;
+  color: black;
+}

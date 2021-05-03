@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import TestLetter from "../TestLetter/TestLetter";
 import "./TypingChallenge.css";
 
-const TypingChallenge = ({ testPara, setWordCount, setCharCount }) => {
-  const [userText, setUserText] = useState(``);
+const TypingChallenge = ({
+  testPara,
+  userText,
+  setUserText,
+  timerActive,
+  setTimer,
+}) => {
   const [testLetters, setTestLetters] = useState([]);
 
   const generateTestLetters = () => {
@@ -16,7 +21,8 @@ const TypingChallenge = ({ testPara, setWordCount, setCharCount }) => {
 
   useEffect(generateTestLetters, [testPara]);
 
-  const updateTestLetter = (e) => {
+  const updateTestLetters = (e) => {
+    if (!timerActive) setTimer();
     const userText = e.target.value;
     const len = userText.length;
     let letters = testLetters;
@@ -31,9 +37,8 @@ const TypingChallenge = ({ testPara, setWordCount, setCharCount }) => {
 
     setTestLetters([...letters]);
     setUserText(userText);
-    setWordCount(userText.length > 0 ? userText.trim().split(" ").length : 0);
-    setCharCount(userText.length);
   };
+
   return (
     <div className="typing-challenge-contianer">
       <div className="test-para">
@@ -44,8 +49,9 @@ const TypingChallenge = ({ testPara, setWordCount, setCharCount }) => {
       <div className="user-text-container">
         <textarea
           className="user-text-area"
-          onChange={(e) => updateTestLetter(e)}
+          onChange={(e) => updateTestLetters(e)}
           value={userText}
+          placeholder={!timerActive ? "type to start the test" : ""}
         ></textarea>
       </div>
     </div>

@@ -1,11 +1,13 @@
 import React from "react";
 import "./TestStats.css";
 
-const TestStats = ({ wordCount, charCount }) => {
+const TestStats = ({ userText }) => {
+  const wordCount = userText.length > 0 ? userText.trim().split(" ").length : 0;
+  const charCount = userText.length;
   return (
     <div className="stats-container">
       <div className="stat" data-aos="fade-up">
-        <div className="statHead">Characters</div>
+        <div className="statHead">characters</div>
         <br />
         <div className="statValue">{charCount}</div>
       </div>

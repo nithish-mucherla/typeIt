@@ -4,3 +4,12 @@
   margin: 20px;
   background-color: #eeeeee;
 }
+
+.countdown-timer {
+  text-align: center;
+  font-size: 30px;
+  text-align: center;
+  font-family: "Press Start 2P";
+  padding-top: 20px;
+  padding-bottom: 10px;
+}

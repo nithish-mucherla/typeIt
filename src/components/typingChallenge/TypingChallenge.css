@@ -1,11 +1,11 @@
 .typing-challenge-contianer {
-  direction: flex;
+  display: flex;
   flex-direction: column;
   font-weight: 200;
   font-family: "Lato";
   justify-content: center;
   padding: 20px;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
 }
 
