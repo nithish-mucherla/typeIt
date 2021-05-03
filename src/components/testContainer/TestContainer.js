@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TestStats from "../testStats/TestStats";
 import TypingChallenge from "../typingChallenge/TypingChallenge";
+import TestResults from "../TestResults/TestResults";
 import "./TestContainer.css";
 
 const TestContainer = () => {
@@ -14,29 +15,41 @@ const TestContainer = () => {
     setTestPara(para);
   }, []);
 
-  const setTimer = () => {
-    setTimerActivity(true);
-    let interval = setInterval(() => {
-      if (timeLeft > 0) setTimeLeft((second) => second - 1);
-      else clearInterval(interval);
-    }, 1000);
-  };
+  useEffect(() => {
+    if (timerActive) {
+      let interval = setInterval(() => {
+        if (timeLeft > 0) setTimeLeft((second) => second - 1);
+      }, 1000);
 
-  return (
-    <div className="test-container">
-      <TestStats userText={userText} />
-      <div className="countdown-timer">
-        00:{timeLeft > 9 ? timeLeft : "0" + timeLeft}
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [timerActive, timeLeft]);
+
+  const wordCount = userText.length > 0 ? userText.trim().split(" ").length : 0;
+  const charCount = userText.length;
+  const timeSpent = 60 - timeLeft;
+  const wpm = timeSpent > 0 ? parseInt((wordCount / timeSpent) * 60) : 0;
+
+  if (timeLeft > 0)
+    return (
+      <div className="test-container">
+        <TestStats wordCount={wordCount} charCount={charCount} wpm={wpm} />
+        <div className="countdown-timer">
+          00:{timeLeft > 9 ? timeLeft : "0" + timeLeft}
+        </div>
+        <TypingChallenge
+          testPara={testPara}
+          userText={userText}
+          setUserText={setUserText}
+          timerActive={timerActive}
+          setTimerActivity={setTimerActivity}
+        />
       </div>
-      <TypingChallenge
-        testPara={testPara}
-        userText={userText}
-        setUserText={setUserText}
-        timerActive={timerActive}
-        setTimer={setTimer}
-      />
-    </div>
-  );
+    );
+
+  return <TestResults wordCount={wordCount} charCount={charCount} wpm={wpm} />;
 };
 
 export default TestContainer;

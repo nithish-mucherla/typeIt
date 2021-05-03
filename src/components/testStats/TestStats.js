@@ -1,13 +1,11 @@
 import React from "react";
 import "./TestStats.css";
 
-const TestStats = ({ userText }) => {
-  const wordCount = userText.length > 0 ? userText.trim().split(" ").length : 0;
-  const charCount = userText.length;
+const TestStats = ({ wordCount, charCount, wpm }) => {
   return (
     <div className="stats-container">
       <div className="stat" data-aos="fade-up">
-        <div className="statHead">characters</div>
+        <div className="statHead">Chars</div>
         <br />
         <div className="statValue">{charCount}</div>
       </div>
@@ -19,7 +17,7 @@ const TestStats = ({ userText }) => {
       <div className="stat" data-aos="fade-up">
         <div className="statHead">Speed</div>
         <br />
-        <div className="statValue">0</div>
+        <div className="statValue">{wpm} wpm</div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const TypingChallenge = ({
   userText,
   setUserText,
   timerActive,
-  setTimer,
+  setTimerActivity,
 }) => {
   const [testLetters, setTestLetters] = useState([]);
 
@@ -22,7 +22,7 @@ const TypingChallenge = ({
   useEffect(generateTestLetters, [testPara]);
 
   const updateTestLetters = (e) => {
-    if (!timerActive) setTimer();
+    if (!timerActive) setTimerActivity(true);
     const userText = e.target.value;
     const len = userText.length;
     let letters = testLetters;
