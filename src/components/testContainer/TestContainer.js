@@ -32,9 +32,15 @@ const TestContainer = () => {
   const timeSpent = 60 - timeLeft;
   const wpm = timeSpent > 0 ? parseInt((wordCount / timeSpent) * 60) : 0;
 
+  const resetTest = () => {
+    setUserText(``);
+    setTimerActivity(false);
+    setTimeLeft(60);
+  };
+
   if (timeLeft > 0)
     return (
-      <div className="test-container">
+      <div className="test-container" data-aos="fade-up">
         <TestStats wordCount={wordCount} charCount={charCount} wpm={wpm} />
         <div className="countdown-timer">
           00:{timeLeft > 9 ? timeLeft : "0" + timeLeft}
@@ -49,7 +55,14 @@ const TestContainer = () => {
       </div>
     );
 
-  return <TestResults wordCount={wordCount} charCount={charCount} wpm={wpm} />;
+  return (
+    <TestResults
+      wordCount={wordCount}
+      charCount={charCount}
+      wpm={wpm}
+      resetTest={resetTest}
+    />
+  );
 };
 
 export default TestContainer;

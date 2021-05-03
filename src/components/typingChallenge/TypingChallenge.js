@@ -51,7 +51,7 @@ const TypingChallenge = ({
           className="user-text-area"
           onChange={(e) => updateTestLetters(e)}
           value={userText}
-          placeholder={!timerActive ? "type to start the test" : ""}
+          placeholder={!timerActive ? "Type to start the test..." : ""}
         ></textarea>
       </div>
     </div>

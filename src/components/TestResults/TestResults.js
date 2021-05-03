@@ -1,7 +1,7 @@
 import React from "react";
 import "./TestResults.css";
 
-const TestResults = ({ wordCount, charCount, wpm }) => {
+const TestResults = ({ wordCount, charCount, wpm, resetTest }) => {
   return (
     <div className="result-container">
       <div className="results-header">Test Results</div>
@@ -14,6 +14,11 @@ const TestResults = ({ wordCount, charCount, wpm }) => {
         </div>
         <div>
           <b>Speed:</b> {wpm} wpm
+        </div>
+      </div>
+      <div>
+        <div className="retry-button" onClick={() => resetTest()}>
+          RETRY
         </div>
       </div>
     </div>

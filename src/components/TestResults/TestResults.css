@@ -6,7 +6,7 @@
   height: 40vh;
   background-color: #eeeeee;
   color: black;
-  text-align: center;
+  align-items: center;
 }
 
 .results-header {
@@ -18,4 +18,18 @@
 .results {
   font-family: "Lato";
   letter-spacing: 1px;
+}
+
+.retry-button {
+  padding: 10px;
+  background-color: #222336;
+  color: #eeeeee;
+  width: 100px;
+  margin: 20px;
+  text-align: center;
+}
+
+.retry-button:hover {
+  cursor: pointer;
+  background-color: #222336cd;
 }
