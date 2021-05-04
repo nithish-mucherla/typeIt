@@ -40,7 +40,7 @@ const TestContainer = () => {
 
   if (timeLeft > 0)
     return (
-      <div className="test-container" data-aos="fade-up">
+      <div className="test-container">
         <TestStats wordCount={wordCount} charCount={charCount} wpm={wpm} />
         <div className="countdown-timer">
           00:{timeLeft > 9 ? timeLeft : "0" + timeLeft}
