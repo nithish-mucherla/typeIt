@@ -1,7 +1,7 @@
 import React from "react";
 import "./landing.css";
 import xlr8 from "../../assets/xlr8.jpg";
-import Typewriter from "typewriter-effect";
+import TypeWriter from "../TypeWriter/TypeWriter";
 
 const Landing = () => {
   return (
@@ -10,13 +10,7 @@ const Landing = () => {
         <div className="landing-typewriter">
           <div className="landing-header">Are you good at typing...</div>
           <div className="landing-typewriter">
-            <Typewriter
-              options={{
-                strings: ["Fast?", "Quick?", "Correct?"],
-                autoStart: true,
-                loop: true,
-              }}
-            />
+            <TypeWriter words={["Fast?", "Quick?", "Correct?"]} loop={true} />
           </div>
         </div>
       </div>
